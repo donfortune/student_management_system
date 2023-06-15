@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit, QPushButton, QComboBox, QMainWindow
+from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit, QPushButton, QComboBox, QMainWindow, QTableWidget
 from PyQt6.QtGui import QAction
 
 
@@ -20,6 +20,17 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         about_us = QAction('About', self)
         help_menu.addAction(about_us)
         about_us.setMenuRole(QAction.MenuRole.NoRole)   #add line if about doesnt show on the menu bar
+
+        #create table
+        self.table = QTableWidget()
+        self.table.setColumnCount(4)
+        self.table.setHorizontalHeaderLabels(('Id', 'Name', 'Course', 'Mobile no'))
+        self.setCentralWidget((self.table)) #append the table to the main window
+
+
+
+    def add_data(self):
+        self.table
 
 
 
