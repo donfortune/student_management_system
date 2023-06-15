@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         self.table.setColumnCount(4)
         self.table.setHorizontalHeaderLabels(('Id', 'Name', 'Course', 'Mobile no'))
         self.setCentralWidget((self.table)) #append the table to the main window
+        self.table.verticalHeader().setVisible(False) #removed duplicate index
 
 
 
