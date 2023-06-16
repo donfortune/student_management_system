@@ -1,8 +1,9 @@
 import sys
 from datetime import datetime
 
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit, QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog
+from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog
 from PyQt6.QtGui import QAction
+from PyQt6.QtCore import Qt
 import sqlite3
 
 
@@ -125,7 +126,16 @@ class EditDialog(QDialog):
 
 
     def search(self):
-        pass
+        name = self.name.text()
+        connection = sqlite3.connect('database.db')
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM students WHERE name = ?', (name,))
+        items = main_window.table.findItems(name, Qt.MatchFlag.MatchFixedString) #access table to find the name you search
+        for item in items:
+            print(item)
+            main_window.table.item(item.row(), 1).setSelected(True)
+            cursor.close()
+            connection.close()
 
 
 app = QApplication(sys.argv)
