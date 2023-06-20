@@ -1,8 +1,8 @@
 import sys
 from datetime import datetime
 
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog, QToolBar
-from PyQt6.QtGui import QAction
+from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget,  QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog, QToolBar
+from PyQt6.QtGui import QAction,  QIcon
 from PyQt6.QtCore import Qt
 import sqlite3
 
@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         search_menu = self.menuBar().addMenu('&Edit')
 
         #create sub menu bar
-        add_student = QAction('Add Student', self)
+        add_student = QAction(QIcon('icons/add.png'),'Add Student', self)
         add_student.triggered.connect(self.insert)
         file_menu.addAction(add_student)
 
@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         help_menu.addAction(about_us)
         about_us.setMenuRole(QAction.MenuRole.NoRole)   #add line if about doesnt show on the menu bar
 
-        search_action = QAction("Search", self)
+        search_action = QAction(QIcon('icons/search.png'),"Search", self)
         search_menu.addAction(search_action)
         search_action.triggered.connect(self.search)
 
@@ -40,7 +40,11 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         toolbar = QToolBar()
         toolbar.setMovable(True) #makes toolbar movable
         self.addToolBar(toolbar)
-        
+
+        #add elements to toolbar
+        toolbar.addAction(add_student)
+        toolbar.addAction(search_action)
+
 
 
 
