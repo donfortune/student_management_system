@@ -47,11 +47,22 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         toolbar.addAction(search_action)
 
         #create status bar
-        statusbar = QStatusBar()
-        self.setStatusBar(statusbar)
+        self.statusbar = QStatusBar()
+        self.setStatusBar(self.statusbar)
+
+        #add elements to statusbar(buttons)
+        self.table.cellClicked.connect(self.cell_clicked)   #allows you to detect a click on a cell 
 
 
 
+    def cell_clicked(self):
+        edit_button = QPushButton('Edit Record')
+        edit_button.clicked.connect(self.edit)
+        self.statusBar().addWidget(edit_button)
+
+        delete_button = QPushButton('Edit Record')
+        delete_button.clicked.connect(self.delete)
+        self.statusBar().addWidget(delete_button)
 
 
     def add_data(self):
@@ -72,7 +83,19 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         dialog = EditDialog()
         dialog.exec()
 
+    def edit(self):
+        dialog = EditDialog
+        dialog.exec
 
+    def delete(self):
+        dialog = DeleteDialog
+        dialog.exec
+
+class EditDialog(QDialog):
+    pass
+
+class DeleteDialog(QDialog):
+    pass
 
 class InsertDialog(QDialog):
     def __init__(self):
