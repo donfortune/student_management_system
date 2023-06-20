@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget,  QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog, QToolBar
+from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QStatusBar,  QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog, QToolBar
 from PyQt6.QtGui import QAction,  QIcon
 from PyQt6.QtCore import Qt
 import sqlite3
@@ -45,6 +45,10 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         #add elements to toolbar
         toolbar.addAction(add_student)
         toolbar.addAction(search_action)
+
+        #create status bar
+        statusbar = QStatusBar()
+        self.setStatusBar(statusbar)
 
 
 
