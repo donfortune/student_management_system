@@ -58,9 +58,13 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
     def cell_clicked(self):
         edit_button = QPushButton('Edit Record')
         edit_button.clicked.connect(self.edit)
+        button_exist = self.findChildren(QPushButton)
+        if button_exist:
+            for button in button_exist:
+                self.statusBar().removeWidget(button)
         self.statusBar().addWidget(edit_button)
 
-        delete_button = QPushButton('Edit Record')
+        delete_button = QPushButton('Delete Record')
         delete_button.clicked.connect(self.delete)
         self.statusBar().addWidget(delete_button)
 
