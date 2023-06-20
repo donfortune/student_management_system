@@ -11,6 +11,7 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Student Management System')
+        self.setMinimumSize(800, 600)
         #creat menu bar
         file_menu = self.menuBar().addMenu('&File')
         help_menu = self.menuBar().addMenu('&Help')
