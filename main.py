@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog
+from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLayout, QLineEdit,  QPushButton, QComboBox, QMainWindow, QTableWidget,  QTableWidgetItem, QDialog, QToolBar
 from PyQt6.QtGui import QAction
 from PyQt6.QtCore import Qt
 import sqlite3
@@ -35,6 +35,13 @@ class MainWindow(QMainWindow):    #QMAINWINDOW ALLOWS FOR A MENU AND STATUS BAR
         self.table.setHorizontalHeaderLabels(('Id', 'Name', 'Course', 'Mobile no'))
         self.setCentralWidget((self.table)) #append the table to the main window
         self.table.verticalHeader().setVisible(False) #removed duplicate index
+
+        #create toolbar
+        toolbar = QToolBar()
+        toolbar.setMovable(True) #makes toolbar movable
+        self.addToolBar(toolbar)
+        
+
 
 
 
