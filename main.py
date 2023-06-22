@@ -174,6 +174,7 @@ class DeleteDialog(QDialog):
     def delete_student(self):
         index = main_window.table.currentRow()
         get_id = main_window.table.item(index, 0).text()
+        student_name = main_window.table.item(index, 1).text()
 
         connect =sqlite3.connect('database.db')
         cursor = connect.cursor()
@@ -187,7 +188,7 @@ class DeleteDialog(QDialog):
 
         confirmation_widget = QMessageBox()
         confirmation_widget.setWindowTitle('Success')
-        confirmation_widget.setText('The Record was deleted successfully')
+        confirmation_widget.setText(f'The Record for {student_name} was deleted successfully ')
         confirmation_widget.exec()
 
 
