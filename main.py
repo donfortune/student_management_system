@@ -42,6 +42,7 @@ class MainWindow(QMainWindow):
         about_us = QAction('About', self)
         help_menu.addAction(about_us)
         about_us.setMenuRole(QAction.MenuRole.NoRole)
+        about_us.triggered.connect(self.about)
 
         search_action = QAction(QIcon('icons/search.png'), 'Search', self)
         search_menu.addAction(search_action)
@@ -108,6 +109,17 @@ class MainWindow(QMainWindow):
     def delete(self):
         dialog = DeleteDialog()
         dialog.exec()
+
+    def about(self):
+        dialog = AboutDialog()
+        dialog.exec()
+
+class AboutDialog(QMessageBox):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('About')
+        content = 'This app was created by fortune'
+        self.setText(content)
 
 
 class EditStatusBarDialog(QDialog):
