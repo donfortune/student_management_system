@@ -119,6 +119,7 @@ class EditStatusBarDialog(QDialog):
         layout = QVBoxLayout()
         index = main_window.table.currentRow()
         student_name = main_window.table.item(index, 1).text()  #get student name from selected row
+        self.get_id = main_window.table.item(index, 0).text()  # get id from selected row
         self.name = QLineEdit(student_name)
         self.name.setPlaceholderText('Name')
         layout.addWidget(self.name)
@@ -141,7 +142,14 @@ class EditStatusBarDialog(QDialog):
         self.setLayout(layout)
 
     def update(self):
-        pass
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+        cursor.execute("UPDATE students SET name = ?, course = ?, mobile = ? WHERE id = ?", (self.name.text(), self.courses.itemText(self.courses.currentIndex()), self.phone_no.text(), self.get_id))
+        connect.commit()
+        cursor.close()
+        connect.close()
+        main_window.add_data()
+
 
 class DeleteDialog(QDialog):
     pass
