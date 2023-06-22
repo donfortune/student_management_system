@@ -119,7 +119,7 @@ class EditStatusBarDialog(QDialog):
         layout = QVBoxLayout()
         index = main_window.table.currentRow()
         student_name = main_window.table.item(index, 1).text()  #get student name from selected row
-        self.get_id = main_window.table.item(index, 0).text()  # get id from selected row
+        self.get_id = main_window.table.item(index, 0).text()   # get id from selected row
         self.name = QLineEdit(student_name)
         self.name.setPlaceholderText('Name')
         layout.addWidget(self.name)
@@ -152,7 +152,38 @@ class EditStatusBarDialog(QDialog):
 
 
 class DeleteDialog(QDialog):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('Delete Student Data')
+
+
+        layout = QGridLayout()
+
+        Message = QLineEdit('Are you sure you want to delete?')
+        yes_button = QPushButton('Yes')
+        no_button = QPushButton('No')
+        layout.addWidget(Message, 0, 0, 1, 2)
+        layout.addWidget(yes_button, 1, 0)
+        layout.addWidget(no_button, 1, 1)
+        self.setLayout(layout)
+
+        yes_button.clicked.connect(self.delete_student)
+
+
+    def delete_student(self):
+        index = main_window.table.currentRow()
+        get_id = main_window.table.item(index, 0).text()
+
+        connect =sqlite3.connect('database.db')
+        cursor = connect.cursor()
+        cursor.execute("DELETE from students WHERE id = ?", (get_id, ))
+        connect.commit()
+        cursor.close()
+        connect.close()
+        main_window.add_data()
+
+
+
 
 
 class InsertDialog(QDialog):
