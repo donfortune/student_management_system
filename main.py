@@ -129,7 +129,8 @@ class EditStatusBarDialog(QDialog):
         self.courses.setCurrentText(course_name)
         layout.addWidget(self.courses)
 
-        self.phone_no = QLineEdit()
+        phone = main_window.table.item(index, 3).text()
+        self.phone_no = QLineEdit(phone)
         self.phone_no.setPlaceholderText('Phone No.')
         layout.addWidget(self.phone_no)
 
