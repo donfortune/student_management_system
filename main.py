@@ -16,6 +16,7 @@ from PyQt6.QtWidgets import (
     QTableWidgetItem,
     QDialog,
     QToolBar,
+    QMessageBox
 )
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
@@ -181,6 +182,16 @@ class DeleteDialog(QDialog):
         cursor.close()
         connect.close()
         main_window.add_data()
+
+        self.close()
+
+        confirmation_widget = QMessageBox()
+        confirmation_widget.setWindowTitle('Success')
+        confirmation_widget.setText('The Record was deleted successfully')
+        confirmation_widget.exec()
+
+
+
 
 
 
