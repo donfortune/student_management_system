@@ -123,8 +123,10 @@ class EditStatusBarDialog(QDialog):
         self.name.setPlaceholderText('Name')
         layout.addWidget(self.name)
 
+        course_name = main_window.table.item(index, 2).text()
         self.courses = QComboBox()
         self.courses.addItems(['Biology', 'Maths', 'Chemistry', 'Physics'])
+        self.courses.setCurrentText(course_name)
         layout.addWidget(self.courses)
 
         self.phone_no = QLineEdit()
