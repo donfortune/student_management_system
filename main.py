@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 
-from PyQt6.QtWidgets import (
+from PyQt6.QtWidgets import ( #main module
     QApplication,
     QVBoxLayout,
     QLabel,
